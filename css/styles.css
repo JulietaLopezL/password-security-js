@@ -1,6 +1,6 @@
 body {
   font-family: system-ui, sans-serif;
-  background: #AFD67E;
+  background: #C9EAEE;
   margin: 0;
   padding: 0;
 }
@@ -33,6 +33,13 @@ label {
   background: #ddd;
   border-radius: 6px;
   overflow: hidden;
+}
+
+button{
+    background: #ECF8F9;
+    border-color: #C9EAEE;
+    padding: 0.3rem 0.8rem;
+    border-radius: 3px;
 }
 
 #strengthFill {
