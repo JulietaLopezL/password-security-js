@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Password Security</title>
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
+<body>
+  <main class="container">
+    <h1>Password Security 🔐</h1>
+
+    <section class="generator">
+      <h2>Generar contraseña</h2>
+
+      <label>
+        Longitud:
+        <input type="number" id="lengthInput" min="6" max="64" value="12">
+      </label>
+
+      <div class="options">
+        <label>
+          <input type="checkbox" id="lowerCheckbox" checked>
+          Minúsculas
+        </label>
+        <label>
+          <input type="checkbox" id="upperCheckbox" checked>
+          Mayúsculas
+        </label>
+        <label>
+          <input type="checkbox" id="numbersCheckbox" checked>
+          Números
+        </label>
+        <label>
+          <input type="checkbox" id="symbolsCheckbox">
+          Símbolos
+        </label>
+      </div>
+
+      <button id="generateBtn">Generar</button>
+
+      <div class="result">
+        <label>Contraseña generada:</label>
+        <input type="text" id="passwordOutput" readonly>
+        <button id="copyBtn">Copiar</button>
+      </div>
+    </section>
+
+    <section class="strength">
+      <h2>Fuerza de la contraseña</h2>
+      <p id="strengthLabel">Sin evaluar</p>
+      <div class="strength-bar">
+        <div id="strengthFill"></div>
+      </div>
+    </section>
+  </main>
+
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
