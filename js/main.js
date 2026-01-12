@@ -29,11 +29,19 @@ generateBtn.addEventListener("click", () => {
     const password = generatePassword(options);
     passwordOutput.value = password;
 
+    if(password){
+      copyBtn.disabled = false;
+    } else{
+      copyBtn.disabled = true;
+    }
+
     updateStrength(password);
   } catch (err) {
     errorMessage(err.message);
   }
 });
+
+copyBtn.disabled = !passwordOutput.value;
 
 passwordOutput.addEventListener("input", () => {
   updateStrength(passwordOutput.value);
@@ -74,8 +82,8 @@ lengthInput.addEventListener("input", () => {
   const length = parseInt(lengthInput.value, 10);
   if (length < 6) {
     lengthMessage.textContent = "La longitud mínima es 6";
-  } else if (length > 64) {
-    lengthMessage.textContent = "La longitud máxima es 64";
+  } else if (length > 20) {
+    lengthMessage.textContent = "La longitud máxima es 20";
   } else {
     lengthMessage.textContent = "";
   }
