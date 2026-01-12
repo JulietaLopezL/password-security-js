@@ -11,6 +11,8 @@ const passwordOutput = document.getElementById("passwordOutput");
 const copyBtn = document.getElementById("copyBtn");
 const strengthLabel = document.getElementById("strengthLabel");
 const strengthFill = document.getElementById("strengthFill");
+const lengthMessage = document.getElementById("lengthMessage");
+const optionsMessage = document.getElementById("optionsMessage");
 
 generateBtn.addEventListener("click", () => {
   try {
@@ -29,7 +31,7 @@ generateBtn.addEventListener("click", () => {
 
     updateStrength(password);
   } catch (err) {
-    alert(err.message);
+    errorMessage(err.message);
   }
 });
 
@@ -46,7 +48,7 @@ copyBtn.addEventListener("click", async () => {
     copyBtn.textContent = "Copiado!";
     setTimeout(() => (copyBtn.textContent = "Copiar"), 1500);
   } catch {
-    alert("No se pudo copiar al portapapeles");
+    errorMessage("Error al copiar al portapapeles");
   }
 });
 
@@ -66,4 +68,42 @@ function updateStrength(password) {
   } else {
     strengthFill.style.background = "#2b9b2b";
   }
+}
+
+lengthInput.addEventListener("input", () => {
+  const length = parseInt(lengthInput.value, 10);
+  if (length < 6) {
+    lengthMessage.textContent = "La longitud mínima es 6";
+  } else if (length > 64) {
+    lengthMessage.textContent = "La longitud máxima es 64";
+  } else {
+    lengthMessage.textContent = "";
+  }
+});
+
+const checkboxes = [lowerCheckbox, upperCheckbox, numbersCheckbox, symbolsCheckbox];
+checkboxes.forEach(checkbox => {
+  checkbox.addEventListener("change", () => {
+    const anyChecked = checkboxes.some(cb => cb.checked);
+    if (!anyChecked) {
+      optionsMessage.textContent = "Debes seleccionar al menos un tipo de carácter";
+    } else {
+      optionsMessage.textContent = "";
+    }
+  });
+});
+
+function errorMessage(message) {
+    const messageDiv = document.getElementById("Message");
+    if (message === null) {
+        messageDiv.textContent = "";
+        messageDiv.style.display = "none";
+    } else {
+        messageDiv.textContent = message;
+        messageDiv.style.display = "block";
+        setTimeout(() => {
+            messageDiv.textContent = "";
+            messageDiv.style.display = "none";
+        }, 3000);
+    }
 }
