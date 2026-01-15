@@ -5,9 +5,13 @@ buenas prácticas de organización de código.
 
 # Estructura del proyecto
 index.html --> estructura principal de la interfaz
+
 css/styles.css --> estilos
+
 js/main.js --> punto de entrada (manejo de eventos)
+
 js/generator.js --> lógica de generación de contraseñas
+
 js/strength.js --> lógica de cálculo de fortaleza
 
 # Cómo se usa?
