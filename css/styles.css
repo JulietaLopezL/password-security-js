@@ -65,6 +65,7 @@ button:disabled {
 
 .history h2,
 #historyList,
-#cleanHistory {
+#cleanHistory,
+#usageSummary {
   display: none;
 }

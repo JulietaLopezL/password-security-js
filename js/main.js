@@ -1,6 +1,6 @@
 import { generatePassword } from "./generator.js";
 import { getPasswordScore, getStrengthLabel } from "./strength.js";
-import { savePassword, getHistory, clearHistory } from "./storage.js";
+import { savePassword, getHistory, clearHistory, getStatistics } from "./storage.js";
 
 
 const lengthInput = document.getElementById("lengthInput");
@@ -144,16 +144,44 @@ function loadHistory() {
   });
 }
 
+function displayStatistics() {
+  const stats = getStatistics();
+  const summaryDiv = document.getElementById("usageSummary");
+  if (stats.totalPasswords === 0) {
+    summaryDiv.innerHTML = "<p>No hay estadísticas disponibles.</p>";
+    return;
+  }
+  const strengthText = Object.entries(stats.strengthCounts)
+    .map(([label, count]) => `${label}: ${count}`)
+    .join(", ");
+  summaryDiv.innerHTML = `
+    <p><strong>Resumen de uso:</strong></p>
+    <p>Total de contraseñas: ${stats.totalPasswords}</p>
+    <p>Suma de longitudes: ${stats.totalLength}</p>
+    <p>Suma de scores: ${stats.totalScore}</p>
+    <p>Contadores por fuerza: ${strengthText}</p>
+  `;
+}
+
 historyGeneratorBtn.addEventListener("click", () => {
   loadHistory();
+  displayStatistics();
 
   document.querySelector('.history h2').style.display = 'block';
   document.getElementById('historyList').style.display = 'block';
   document.getElementById('cleanHistory').style.display = 'block';
+  document.getElementById('usageSummary').style.display = 'block';
 });
 
 clearHistoryBtn.addEventListener("click", () => {
   clearHistory();
   loadHistory();
+  displayStatistics();
+  // Ocultar toda la sección de historial
+  document.querySelector('.history h2').style.display = 'none';
+  document.getElementById('historyList').style.display = 'none';
+  document.getElementById('cleanHistory').style.display = 'none';
+  document.getElementById('usageSummary').style.display = 'none';
+  // Deshabilitar el botón si no hay historial
   historyGeneratorBtn.disabled = historyList.children.length === 0;
 });
