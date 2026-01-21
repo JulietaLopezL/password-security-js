@@ -39,6 +39,7 @@ button{
     background: #ECF8F9;
     border-color: #C9EAEE;
     padding: 0.3rem 0.8rem;
+    padding-top: 0.5rem;
     border-radius: 3px;
 }
 
@@ -59,4 +60,11 @@ button:disabled {
   cursor: not-allowed;
   background-color: #ccc;
   color: #999;
+}
+
+
+.history h2,
+#historyList,
+#cleanHistory {
+  display: none;
 }

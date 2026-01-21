@@ -1,5 +1,7 @@
 import { generatePassword } from "./generator.js";
 import { getPasswordScore, getStrengthLabel } from "./strength.js";
+import { savePassword, getHistory, clearHistory } from "./storage.js";
+
 
 const lengthInput = document.getElementById("lengthInput");
 const lowerCheckbox = document.getElementById("lowerCheckbox");
@@ -13,8 +15,20 @@ const strengthLabel = document.getElementById("strengthLabel");
 const strengthFill = document.getElementById("strengthFill");
 const lengthMessage = document.getElementById("lengthMessage");
 const optionsMessage = document.getElementById("optionsMessage");
+const historyList = document.getElementById("historyList");
+const clearHistoryBtn = document.getElementById("clearHistoryBtn");
+const historyGeneratorBtn = document.getElementById("historyGeneratorBtn");
+
+
+historyGeneratorBtn.disabled = getHistory().length === 0;
 
 generateBtn.addEventListener("click", () => {
+
+  if(!lengthInput.value.trim()){
+    errorMessage("Debes ingresar la longitud de la contraseña");
+    return;
+  }
+  
   try {
     const length = parseInt(lengthInput.value, 10);
 
@@ -34,6 +48,10 @@ generateBtn.addEventListener("click", () => {
     } else{
       copyBtn.disabled = true;
     }
+
+    const savePasswordResult = savePassword(password); 
+
+    historyGeneratorBtn.disabled = false;
 
     updateStrength(password);
   } catch (err) {
@@ -115,3 +133,27 @@ function errorMessage(message) {
         }, 3000);
     }
 }
+
+function loadHistory() {
+  const history = getHistory();
+  historyList.innerHTML = "";
+  history.forEach(entry => {
+    const li = document.createElement("li");
+    li.textContent = `${entry.password} (Generada el: ${new Date(entry.date).toLocaleString()})`;
+    historyList.appendChild(li);
+  });
+}
+
+historyGeneratorBtn.addEventListener("click", () => {
+  loadHistory();
+
+  document.querySelector('.history h2').style.display = 'block';
+  document.getElementById('historyList').style.display = 'block';
+  document.getElementById('cleanHistory').style.display = 'block';
+});
+
+clearHistoryBtn.addEventListener("click", () => {
+  clearHistory();
+  loadHistory();
+  historyGeneratorBtn.disabled = historyList.children.length === 0;
+});
