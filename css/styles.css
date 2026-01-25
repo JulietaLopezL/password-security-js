@@ -16,6 +16,11 @@ body {
 label {
   display: block;
   margin: 0.5rem 0;
+  font-size: 1.1em;
+}
+
+p {
+  font-size: 1.1em;
 }
 
 .options label {
@@ -40,7 +45,7 @@ button{
     border-color: #C9EAEE;
     padding: 0.3rem 0.8rem;
     padding-top: 0.5rem;
-    border-radius: 3px;
+    border-radius: 5px;
 }
 
 #strengthFill {
@@ -62,10 +67,41 @@ button:disabled {
   color: #999;
 }
 
-
 .history h2,
 #historyList,
 #cleanHistory,
 #usageSummary {
   display: none;
 }
+
+#profileSelector {
+  float: right;
+  margin-top: -20px;
+  font-size: 0.85em;
+  padding: 0.35rem;
+  width: 130px;
+  border: 2px solid #C9EAEE;
+  border-radius: 3px;
+  background-color: #ECF8F9;
+}
+
+#profileSelector:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+#profileSelector:focus,
+#profileSelector:active,
+#profileSelector:focus-visible {
+  border-color: #007bff;
+  outline: none;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.passwordOutput {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-top: 1rem;
+  word-break: break-all;
+}
+

@@ -18,6 +18,11 @@ const optionsMessage = document.getElementById("optionsMessage");
 const historyList = document.getElementById("historyList");
 const clearHistoryBtn = document.getElementById("clearHistoryBtn");
 const historyGeneratorBtn = document.getElementById("historyGeneratorBtn");
+const profileSelector = document.getElementById("profileSelector");
+const customOptions = document.getElementById("customOptions");
+const recommendedOptions = document.getElementById("recommendedOptions");
+const simpleOptions = document.getElementById("simpleOptions");
+const strongOptions = document.getElementById("strongOptions");
 
 
 historyGeneratorBtn.disabled = getHistory().length === 0;
@@ -177,11 +182,33 @@ clearHistoryBtn.addEventListener("click", () => {
   clearHistory();
   loadHistory();
   displayStatistics();
-  // Ocultar toda la sección de historial
+ 
   document.querySelector('.history h2').style.display = 'none';
   document.getElementById('historyList').style.display = 'none';
   document.getElementById('cleanHistory').style.display = 'none';
   document.getElementById('usageSummary').style.display = 'none';
-  // Deshabilitar el botón si no hay historial
+
   historyGeneratorBtn.disabled = historyList.children.length === 0;
+});
+
+const PASSWORD_PROFILES = { 
+  simple: { length: 8, useLower: true, useUpper: false, useNumbers: true, useSymbols: false },
+  recommended: { length: 12, useLower: true, useUpper: true, useNumbers: true, useSymbols: false },
+  strong: { length: 16, useLower: true, useUpper: true, useNumbers: true, useSymbols: true },
+  custom: null
+};
+
+profileSelector.addEventListener("change", () => {
+  const selectedProfile = profileSelector.value;
+  const configs = PASSWORD_PROFILES[selectedProfile];
+  if (configs) {
+    lengthInput.value = configs.length;
+    lowerCheckbox.checked = configs.useLower;
+    upperCheckbox.checked = configs.useUpper;
+    numbersCheckbox.checked = configs.useNumbers;
+    symbolsCheckbox.checked = configs.useSymbols;
+    customOptions.style.display = "none";
+  } else {
+    customOptions.style.display = "block";
+  }
 });
