@@ -74,9 +74,12 @@ button:disabled {
   display: none;
 }
 
+.profile-label {
+  display: inline;
+  margin-right: 0.5rem;
+}
+
 #profileSelector {
-  float: right;
-  margin-top: -20px;
   font-size: 0.85em;
   padding: 0.35rem;
   width: 130px;
@@ -103,5 +106,11 @@ button:disabled {
   font-size: 1.2em;
   margin-top: 1rem;
   word-break: break-all;
+}
+
+#profilelabel,
+#profilehelp {
+  font-size: 0.80em;
+  color: #999;
 }
 

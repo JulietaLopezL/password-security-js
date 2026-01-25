@@ -12,14 +12,22 @@
     <section class="generator">
       <h2>Generar contraseña </h2>
 
+    <div class="profile-row">
+      <label for="profileSelector" class="profile-label" id="profilelabel">
+        Perfil de seguridad:
+      </label>
+
       <select id="profileSelector">
-        
-          <option value="simple" >Simple</option>
-          <option value="recommended">Recomendado</option>
-          <option value="strong">Alta seguridad</option>
-          <option value="custom">Personalizado</option>
-        
+        <option value="simple">Simple</option>
+        <option value="recommended">Recomendado</option>
+        <option value="strong">Alta seguridad</option>
+        <option value="custom">Personalizado</option>
       </select>
+
+      <p class="profile-help" id="profilehelp">
+        Podés elegir un perfil para ajustar automáticamente la longitud y la complejidad de la contraseña.
+      </p>
+    </div>
 
       <label>
         Longitud:
