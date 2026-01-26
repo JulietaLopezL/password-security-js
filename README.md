@@ -2,6 +2,8 @@
 Web app para generar contraseñas seguras en JavaScript, con perfiles de seguridad, análisis de fuerza, historial y estadísticas de uso. 
 Proyecto enfocado en **JavaScript**, **HTML/CSS** y buenas prácticas de organización de código.
 
+> Estado: finalizado ✅
+
 # Estructura del proyecto
 index.html --> estructura principal de la interfaz
 
